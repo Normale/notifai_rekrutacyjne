@@ -5,8 +5,8 @@ from jose import jwt
 from config import SECRET_KEY, AUTH_PAYLOAD
 
 
+# Bearer token for manual copy-pasting
 # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibm90aWYuYWkifQ.2LqWUgLYilJGXye0AyN1PlHlIN_Jvw6iOGSmVv1buRg
-
 token = jwt.encode(AUTH_PAYLOAD, key=SECRET_KEY)
 headers = {"Authorization": f"Bearer {token}"}
 client = TestClient(app)
