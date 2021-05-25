@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from pydantic.types import constr
+from typing import List, Dict
 
 
 class MessageBase(BaseModel):
@@ -16,3 +17,16 @@ class Message(MessageBase):
 
     class Config:
         orm_mode = True
+
+
+class JSONDetailedResponse(BaseModel):
+    class Config:
+        schema_extra = {
+            "example": {"detail": "There is detailed description"},
+        }
+
+
+def json_detailed_responses(error_codes: List[int]) -> Dict[int, JSONDetailedResponse]:
+    c = {"model": JSONDetailedResponse}
+    d = {e: c for e in error_codes}
+    return d
